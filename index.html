@@ -1,115 +1,45 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎵 대건고 음악 신청</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 대건고 음악 신청</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🎵 대건고 음악 신청</h1>
-            <p>여가시간에 듣고 싶은 노래를 신청해보세요!</p>
-            
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number" id="totalRequests">0</span>
-                    <span>총 신청곡</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="todayRequests">0</span>
-                    <span>오늘 신청</span>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 대건고 음악 신청</h1>
+            <p>여가시간에 듣고 싶은 노래를 신청해보세요!</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalRequests">0</span>
+                    <span>총 신청곡</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="todayRequests">0</span>
+                    <span>오늘 신청</span>
+                </div>
+            </div>
+        </div>
 
-        <div class="card">
-            <div class="tab-container">
-                <button class="tab active" onclick="switchTab('request')">노래 신청하기</button>
-                <button class="tab" onclick="switchTab('list')">신청 목록</button>
-            </div>
+        <div class="card">
+            <div class="tab-container">
+                <button class="tab active" onclick="switchTab('request', event)">노래 신청하기</button>
+                <button class="tab" onclick="switchTab('list', event)">신청 목록</button>
+            </div>
 
-            <div id="requestTab" class="tab-content active">
-                <form id="musicRequestForm">
-                    <div class="form-group">
-                        <label for="songTitle">🎵 노래 제목 *</label>
-                        <input type="text" id="songTitle" name="songTitle" required placeholder="예: Dynamite">
-                    </div>
+            <div id="requestTab" class="tab-content active">
+                <form id="musicRequestForm">
+                    <div class="form-group">
+                        <label for="songTitle">🎵 노래 제목 *</label>
+                        <input type="text" id="songTitle" name="songTitle" required placeholder="예: Dynamite">
+                    </div>
 
-                    <div class="form-group">
-                        <label for="artist">🎤 가수/아티스트 *</label>
-                        <input type="text" id="artist" name="artist" required placeholder="예: BTS">
-                    </div>
+                    <div class="form-group">
+                        <label for="artist">🎤 가수/아티스트 *</label>
+                        <input type="text" id="artist" name="artist" required placeholder="예: BTS">
+                    </div>
 
-                    <div class="form-group">
-                        <label for="grade">🎒 학년 *</label>
-                        <select id="grade" name="grade" required>
-                            <option value="">학년을 선택하세요</option>
-                            <option value="1학년">1학년</option>
-                            <option value="2학년">2학년</option>
-                            <option value="3학년">3학년</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="className">🏫 반 *</label>
-                        <select id="className" name="className" required>
-                            <option value="">반을 선택하세요</option>
-                            <option value="1반">1반</option>
-                            <option value="2반">2반</option>
-                            <option value="3반">3반</option>
-                            <option value="4반">4반</option>
-                            <option value="5반">5반</option>
-                            <option value="6반">6반</option>
-                            <option value="7반">7반</option>
-                            <option value="8반">8반</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="studentName">👤 이름 (선택사항)</label>
-                        <input type="text" id="studentName" name="studentName" placeholder="익명으로 신청하려면 비워두세요">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="genre">🎼 장르</label>
-                        <select id="genre" name="genre">
-                            <option value="">장르 선택 (선택사항)</option>
-                            <option value="K-POP">K-POP</option>
-                            <option value="POP">POP</option>
-                            <option value="발라드">발라드</option>
-                            <option value="힙합">힙합</option>
-                            <option value="록">록</option>
-                            <option value="인디">인디</option>
-                            <option value="OST">OST</option>
-                            <option value="기타">기타</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">💬 신청 메시지 (선택사항)</label>
-                        <textarea id="message" name="message" rows="3" placeholder="이 노래를 신청하는 이유나 하고 싶은 말을 적어보세요!"></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">🎵 노래 신청하기</button>
-                </form>
-
-                <div id="successMessage" class="message" style="display: none;">
-                    ✅ 노래 신청이 완료되었습니다! 곧 여러분의 신청곡을 들려드릴게요 🎵
-                </div>
-            </div>
-
-            <div id="listTab" class="tab-content">
-                <div class="request-list">
-                    <h3 style="margin-bottom: 15px; color: #667eea;">📋 최근 신청된 노래들</h3>
-                    <div id="requestsList">
-                        <!-- 신청된 노래들이 여기에 표시됩니다 -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script type="module" src="app.js"></script>
-</body>
-</html>
+                    <div class="form-group">
